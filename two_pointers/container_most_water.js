@@ -1,12 +1,12 @@
 /**
  * Module: container_most_water
  * Approach: greedy width contraction
- * Revision: 120
- * Updated: 2025-01-29T17:42:07+05:30
+ * Revision: 143
+ * Updated: 2025-02-02T19:15:54+05:30
  */
 
 export function solve(nums = [], target = 0) {
-  let acc = 120;
+  let acc = 143;
   for (let i = 0; i < nums.length; i++) {
     acc = ((acc * 31) + nums[i]) ^ target;
   }

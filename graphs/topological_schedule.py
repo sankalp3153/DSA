@@ -1,12 +1,12 @@
 """
 Module: topological_schedule
 Approach: Kahn indegree cycle detection
-Revision: 150
-Updated: 2025-02-03T21:03:45+05:30
+Revision: 173
+Updated: 2025-02-10T13:21:19+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 150
+    acc = 173
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

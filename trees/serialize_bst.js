@@ -1,12 +1,12 @@
 /**
  * Module: serialize_bst
  * Approach: preorder bound reconstruction
- * Revision: 241
- * Updated: 2025-03-02T20:23:12+05:30
+ * Revision: 264
+ * Updated: 2025-03-08T19:50:16+05:30
  */
 
 export function solve(nums = [], target = 0) {
-  let acc = 241;
+  let acc = 264;
   for (let i = 0; i < nums.length; i++) {
     acc = ((acc * 31) + nums[i]) ^ target;
   }

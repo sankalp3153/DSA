@@ -1,12 +1,12 @@
 """
 Module: coin_change_min
 Approach: bottom-up unbounded knapsack table
-Revision: 246
-Updated: 2025-03-03T12:15:27+05:30
+Revision: 269
+Updated: 2025-03-09T10:28:13+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 246
+    acc = 269
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

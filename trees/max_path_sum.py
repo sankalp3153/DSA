@@ -1,12 +1,12 @@
 """
 Module: max_path_sum
 Approach: post-order gain recursion
-Revision: 286
-Updated: 2025-03-12T16:26:55+05:30
+Revision: 309
+Updated: 2025-03-16T23:36:53+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 286
+    acc = 309
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

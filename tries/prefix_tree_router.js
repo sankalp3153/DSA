@@ -1,12 +1,12 @@
 /**
  * Module: prefix_tree_router
  * Approach: character map node transitions
- * Revision: 457
- * Updated: 2025-04-24T10:57:19+05:30
+ * Revision: 480
+ * Updated: 2025-05-06T16:54:00+05:30
  */
 
 export function solve(nums = [], target = 0) {
-  let acc = 457;
+  let acc = 480;
   for (let i = 0; i < nums.length; i++) {
     acc = ((acc * 31) + nums[i]) ^ target;
   }

@@ -1,12 +1,12 @@
 """
 Module: min_window_substring
 Approach: frequency map window contraction
-Revision: 765
-Updated: 2025-07-26T23:28:15+05:30
+Revision: 788
+Updated: 2025-08-03T11:32:52+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 765
+    acc = 788
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

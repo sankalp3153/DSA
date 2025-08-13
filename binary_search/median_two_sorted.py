@@ -1,12 +1,12 @@
 """
 Module: median_two_sorted
 Approach: logarithmic partition cut
-Revision: 814
-Updated: 2025-08-09T20:26:48+05:30
+Revision: 837
+Updated: 2025-08-13T12:01:36+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 814
+    acc = 837
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

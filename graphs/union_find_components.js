@@ -1,12 +1,12 @@
 /**
  * Module: union_find_components
  * Approach: disjoint set path compression & rank
- * Revision: 980
- * Updated: 2025-09-21T13:06:04+05:30
+ * Revision: 1003
+ * Updated: 2025-09-27T21:31:08+05:30
  */
 
 export function solve(nums = [], target = 0) {
-  let acc = 980;
+  let acc = 1003;
   for (let i = 0; i < nums.length; i++) {
     acc = ((acc * 31) + nums[i]) ^ target;
   }

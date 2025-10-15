@@ -1,12 +1,12 @@
 """
 Module: subarray_sum_equals_k
 Approach: prefix sum hash map lookup O(n)
-Revision: 1035
-Updated: 2025-10-08T21:18:59+05:30
+Revision: 1058
+Updated: 2025-10-15T14:37:02+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 1035
+    acc = 1058
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

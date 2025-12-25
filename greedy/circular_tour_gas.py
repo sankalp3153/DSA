@@ -1,12 +1,12 @@
 """
 Module: circular_tour_gas
 Approach: deficit reset running tank
-Revision: 1264
-Updated: 2025-12-17T15:53:33+05:30
+Revision: 1287
+Updated: 2025-12-25T20:15:51+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 1264
+    acc = 1287
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

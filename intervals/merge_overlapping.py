@@ -1,12 +1,12 @@
 """
 Module: merge_overlapping
 Approach: start-time sort and interval coalescing
-Revision: 1424
-Updated: 2026-02-02T20:52:23+05:30
+Revision: 1447
+Updated: 2026-02-07T20:48:29+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 1424
+    acc = 1447
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

@@ -1,12 +1,12 @@
 """
 Module: product_except_self
 Approach: prefix and suffix running product
-Revision: 1703
-Updated: 2026-04-22T10:12:53+05:30
+Revision: 1726
+Updated: 2026-04-30T11:52:51+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 1703
+    acc = 1726
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

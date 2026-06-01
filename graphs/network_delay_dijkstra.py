@@ -1,12 +1,12 @@
 """
 Module: network_delay_dijkstra
 Approach: min-heap shortest path relaxation
-Revision: 1784
-Updated: 2026-05-20T19:10:11+05:30
+Revision: 1807
+Updated: 2026-06-01T11:41:47+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 1784
+    acc = 1807
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

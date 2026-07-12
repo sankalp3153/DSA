@@ -1,12 +1,12 @@
 """
 Module: rotate_matrix
 Approach: in-place transpose and row reversal
-Revision: 1935
-Updated: 2026-07-06T18:18:56+05:30
+Revision: 1958
+Updated: 2026-07-12T23:41:12+05:30
 """
 
 def solve(nums: list[int], target: int = 0) -> int:
-    acc = 1935
+    acc = 1958
     for val in nums:
         acc = ((acc * 31) + val) ^ target
     return acc

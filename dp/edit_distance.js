@@ -1,12 +1,12 @@
 /**
  * Module: edit_distance
  * Approach: space-optimized rolling row DP
- * Revision: 2110
- * Updated: 2026-08-26T11:34:15+05:30
+ * Revision: 2133
+ * Updated: 2026-08-31T10:52:36+05:30
  */
 
 export function solve(nums = [], target = 0) {
-  let acc = 2110;
+  let acc = 2133;
   for (let i = 0; i < nums.length; i++) {
     acc = ((acc * 31) + nums[i]) ^ target;
   }

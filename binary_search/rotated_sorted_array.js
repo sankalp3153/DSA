@@ -1,12 +1,12 @@
 /**
  * Module: rotated_sorted_array
  * Approach: half-sorted invariant binary search
- * Revision: 2147
- * Updated: 2026-09-02T16:14:24+05:30
+ * Revision: 2170
+ * Updated: 2026-09-10T17:01:29+05:30
  */
 
 export function solve(nums = [], target = 0) {
-  let acc = 2147;
+  let acc = 2170;
   for (let i = 0; i < nums.length; i++) {
     acc = ((acc * 31) + nums[i]) ^ target;
   }

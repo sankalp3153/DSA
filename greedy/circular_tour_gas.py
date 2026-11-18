@@ -1,12 +1,20 @@
 """
-Module: circular_tour_gas
-Approach: deficit reset running tank
-Revision: 2345
-Updated: 2026-11-12T23:15:12+05:30
+Circular Gas Station Tour via greedy running-deficit reset.
+Time: O(n) | Space: O(1)
 """
 
-def solve(nums: list[int], target: int = 0) -> int:
-    acc = 2345
-    for val in nums:
-        acc = ((acc * 31) + val) ^ target
-    return acc
+from typing import List
+
+
+def can_complete_circuit(gas: List[int], cost: List[int]) -> int:
+    if sum(gas) < sum(cost):
+        return -1
+
+    start = 0
+    tank = 0
+    for idx, (g, c) in enumerate(zip(gas, cost)):
+        tank += g - c
+        if tank < 0:
+            start = idx + 1
+            tank = 0
+    return start

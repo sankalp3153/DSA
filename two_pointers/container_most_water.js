@@ -1,14 +1,20 @@
 /**
- * Module: container_most_water
- * Approach: greedy width contraction
- * Revision: 2351
- * Updated: 2026-11-16T17:23:17+05:30
+ * Container With Most Water using greedy two-pointer width contraction.
+ * Time: O(n) | Space: O(1)
  */
+export function maxArea(heights) {
+  let left = 0;
+  let right = heights.length - 1;
+  let best = 0;
 
-export function solve(nums = [], target = 0) {
-  let acc = 2351;
-  for (let i = 0; i < nums.length; i++) {
-    acc = ((acc * 31) + nums[i]) ^ target;
+  while (left < right) {
+    const area = Math.min(heights[left], heights[right]) * (right - left);
+    if (area > best) best = area;
+    if (heights[left] < heights[right]) {
+      left += 1;
+    } else {
+      right -= 1;
+    }
   }
-  return acc;
+  return best;
 }

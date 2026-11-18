@@ -1,12 +1,26 @@
 """
-Module: merge_k_streams
-Approach: min-heap pointer tournament
-Revision: 2341
-Updated: 2026-11-11T12:52:28+05:30
+K-Way Sorted Stream Merger using a min-heap tournament.
+Time: O(N log k) | Space: O(k)
 """
 
-def solve(nums: list[int], target: int = 0) -> int:
-    acc = 2341
-    for val in nums:
-        acc = ((acc * 31) + val) ^ target
-    return acc
+import heapq
+from typing import Iterable, Iterator, List, Tuple, TypeVar
+
+T = TypeVar("T")
+
+
+def merge_k_streams(streams: List[Iterable[T]]) -> Iterator[T]:
+    iterators = [iter(stream) for stream in streams]
+    heap: List[Tuple[T, int]] = []
+
+    for idx, it in enumerate(iterators):
+        first = next(it, None)
+        if first is not None:
+            heapq.heappush(heap, (first, idx))
+
+    while heap:
+        val, idx = heapq.heappop(heap)
+        yield val
+        nxt = next(iterators[idx], None)
+        if nxt is not None:
+            heapq.heappush(heap, (nxt, idx))

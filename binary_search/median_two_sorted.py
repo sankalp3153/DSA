@@ -1,12 +1,33 @@
 """
-Module: median_two_sorted
-Approach: logarithmic partition cut
-Revision: 2355
-Updated: 2026-11-17T20:38:58+05:30
+Median of Two Sorted Arrays via logarithmic binary partition cut.
+Time: O(log(min(m, n))) | Space: O(1)
 """
 
-def solve(nums: list[int], target: int = 0) -> int:
-    acc = 2355
-    for val in nums:
-        acc = ((acc * 31) + val) ^ target
-    return acc
+from typing import List
+
+
+def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
+    a, b = (nums1, nums2) if len(nums1) <= len(nums2) else (nums2, nums1)
+    m, n = len(a), len(b)
+    half = (m + n + 1) // 2
+    lo, hi = 0, m
+
+    while lo <= hi:
+        i = (lo + hi) // 2
+        j = half - i
+
+        a_left = a[i - 1] if i > 0 else float("-inf")
+        a_right = a[i] if i < m else float("inf")
+        b_left = b[j - 1] if j > 0 else float("-inf")
+        b_right = b[j] if j < n else float("inf")
+
+        if a_left <= b_right and b_left <= a_right:
+            if (m + n) % 2 == 1:
+                return float(max(a_left, b_left))
+            return (max(a_left, b_left) + min(a_right, b_right)) / 2.0
+        if a_left > b_right:
+            hi = i - 1
+        else:
+            lo = i + 1
+
+    raise ValueError("Input arrays must be sorted")

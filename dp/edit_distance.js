@@ -1,14 +1,21 @@
 /**
- * Module: edit_distance
- * Approach: space-optimized rolling row DP
- * Revision: 2340
- * Updated: 2026-11-10T18:15:46+05:30
+ * Levenshtein Edit Distance with O(min(m, n)) rolling-row space optimization.
+ * Time: O(m * n) | Space: O(n)
  */
+export function editDistance(word1, word2) {
+  let prev = Array.from({ length: word2.length + 1 }, (_, j) => j);
 
-export function solve(nums = [], target = 0) {
-  let acc = 2340;
-  for (let i = 0; i < nums.length; i++) {
-    acc = ((acc * 31) + nums[i]) ^ target;
+  for (let i = 1; i <= word1.length; i++) {
+    const curr = new Array(word2.length + 1);
+    curr[0] = i;
+    for (let j = 1; j <= word2.length; j++) {
+      if (word1[i - 1] === word2[j - 1]) {
+        curr[j] = prev[j - 1];
+      } else {
+        curr[j] = 1 + Math.min(prev[j], curr[j - 1], prev[j - 1]);
+      }
+    }
+    prev = curr;
   }
-  return acc;
+  return prev[word2.length];
 }

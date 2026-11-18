@@ -1,12 +1,16 @@
 """
-Module: rotate_matrix
-Approach: in-place transpose and row reversal
-Revision: 2349
-Updated: 2026-11-16T12:36:39+05:30
+In-place 90-degree clockwise N x N matrix rotation via transpose + row reversal.
+Time: O(n^2) | Space: O(1)
 """
 
-def solve(nums: list[int], target: int = 0) -> int:
-    acc = 2349
-    for val in nums:
-        acc = ((acc * 31) + val) ^ target
-    return acc
+from typing import List
+
+
+def rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:
+    n = len(matrix)
+    for r in range(n):
+        for c in range(r + 1, n):
+            matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+    for row in matrix:
+        row.reverse()
+    return matrix

@@ -1,12 +1,18 @@
 """
-Module: longest_increasing_subseq
-Approach: patience sorting binary search tails
-Revision: 2361
-Updated: 2026-11-18T22:30:30+05:30
+Longest Increasing Subsequence via Patience Sorting & Binary Search.
+Time: O(n log n) | Space: O(n)
 """
 
-def solve(nums: list[int], target: int = 0) -> int:
-    acc = 2361
-    for val in nums:
-        acc = ((acc * 31) + val) ^ target
-    return acc
+from bisect import bisect_left
+from typing import List
+
+
+def length_of_lis(nums: List[int]) -> int:
+    tails: List[int] = []
+    for num in nums:
+        pos = bisect_left(tails, num)
+        if pos == len(tails):
+            tails.append(num)
+        else:
+            tails[pos] = num
+    return len(tails)

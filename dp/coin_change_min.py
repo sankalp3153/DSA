@@ -1,12 +1,20 @@
 """
-Module: coin_change_min
-Approach: bottom-up unbounded knapsack table
-Revision: 2339
-Updated: 2026-11-10T12:07:25+05:30
+Unbounded Knapsack Minimum Coin Change via bottom-up DP.
+Time: O(amount * len(coins)) | Space: O(amount)
 """
 
-def solve(nums: list[int], target: int = 0) -> int:
-    acc = 2339
-    for val in nums:
-        acc = ((acc * 31) + val) ^ target
-    return acc
+from typing import List
+
+
+def coin_change(coins: List[int], amount: int) -> int:
+    inf = amount + 1
+    dp = [inf] * (amount + 1)
+    dp[0] = 0
+
+    for coin in coins:
+        for curr in range(coin, amount + 1):
+            candidate = dp[curr - coin] + 1
+            if candidate < dp[curr]:
+                dp[curr] = candidate
+
+    return -1 if dp[amount] > amount else dp[amount]

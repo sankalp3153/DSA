@@ -1,14 +1,28 @@
 /**
- * Module: rotated_sorted_array
- * Approach: half-sorted invariant binary search
- * Revision: 2354
- * Updated: 2026-11-17T20:00:13+05:30
+ * Search in Rotated Sorted Array via half-sorted invariant binary search.
+ * Time: O(log n) | Space: O(1)
  */
+export function searchRotated(nums, target) {
+  let lo = 0;
+  let hi = nums.length - 1;
 
-export function solve(nums = [], target = 0) {
-  let acc = 2354;
-  for (let i = 0; i < nums.length; i++) {
-    acc = ((acc * 31) + nums[i]) ^ target;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    if (nums[mid] === target) return mid;
+
+    if (nums[lo] <= nums[mid]) {
+      if (nums[lo] <= target && target < nums[mid]) {
+        hi = mid - 1;
+      } else {
+        lo = mid + 1;
+      }
+    } else {
+      if (nums[mid] < target && target <= nums[hi]) {
+        lo = mid + 1;
+      } else {
+        hi = mid - 1;
+      }
+    }
   }
-  return acc;
+  return -1;
 }

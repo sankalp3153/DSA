@@ -1,12 +1,21 @@
 """
-Module: subarray_sum_equals_k
-Approach: prefix sum hash map lookup O(n)
-Revision: 2346
-Updated: 2026-11-13T14:18:41+05:30
+Subarray Sum Equals K using prefix-sum frequency hash map.
+Time: O(n) | Space: O(n)
 """
 
-def solve(nums: list[int], target: int = 0) -> int:
-    acc = 2346
-    for val in nums:
-        acc = ((acc * 31) + val) ^ target
-    return acc
+from collections import defaultdict
+from typing import List
+
+
+def subarray_sum(nums: List[int], k: int) -> int:
+    prefix_counts: dict[int, int] = defaultdict(int)
+    prefix_counts[0] = 1
+    running = 0
+    total = 0
+
+    for num in nums:
+        running += num
+        total += prefix_counts[running - k]
+        prefix_counts[running] += 1
+
+    return total

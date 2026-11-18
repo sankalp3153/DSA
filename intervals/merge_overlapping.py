@@ -1,12 +1,20 @@
 """
-Module: merge_overlapping
-Approach: start-time sort and interval coalescing
-Revision: 2344
-Updated: 2026-11-12T22:46:58+05:30
+Merge Overlapping Intervals via start-time sort and linear coalescing.
+Time: O(n log n) | Space: O(n)
 """
 
-def solve(nums: list[int], target: int = 0) -> int:
-    acc = 2344
-    for val in nums:
-        acc = ((acc * 31) + val) ^ target
-    return acc
+from typing import List, Tuple
+
+
+def merge_intervals(intervals: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+    if not intervals:
+        return []
+    ordered = sorted(intervals, key=lambda pair: pair[0])
+    merged = [ordered[0]]
+    for start, end in ordered[1:]:
+        prev_start, prev_end = merged[-1]
+        if start <= prev_end:
+            merged[-1] = (prev_start, max(prev_end, end))
+        else:
+            merged.append((start, end))
+    return merged

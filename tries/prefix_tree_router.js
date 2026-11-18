@@ -1,14 +1,39 @@
 /**
- * Module: prefix_tree_router
- * Approach: character map node transitions
- * Revision: 2343
- * Updated: 2026-11-12T12:19:51+05:30
+ * Prefix Tree (Trie) for fast prefix routing & autocomplete lookup.
+ * Time: O(L) per insert/search where L = key length
  */
-
-export function solve(nums = [], target = 0) {
-  let acc = 2343;
-  for (let i = 0; i < nums.length; i++) {
-    acc = ((acc * 31) + nums[i]) ^ target;
+export class PrefixTrie {
+  constructor() {
+    this.root = { children: new Map(), isTerminal: false, metadata: null };
   }
-  return acc;
+
+  insert(word, metadata = true) {
+    let node = this.root;
+    for (const ch of word) {
+      if (!node.children.has(ch)) {
+        node.children.set(ch, { children: new Map(), isTerminal: false, metadata: null });
+      }
+      node = node.children.get(ch);
+    }
+    node.isTerminal = true;
+    node.metadata = metadata;
+  }
+
+  search(word) {
+    let node = this.root;
+    for (const ch of word) {
+      node = node.children.get(ch);
+      if (!node) return null;
+    }
+    return node.isTerminal ? node.metadata : null;
+  }
+
+  startsWith(prefix) {
+    let node = this.root;
+    for (const ch of prefix) {
+      node = node.children.get(ch);
+      if (!node) return false;
+    }
+    return true;
+  }
 }
